@@ -44,96 +44,38 @@ class MainActivity : ComponentActivity() {
 fun Screen(viewModel: MainViewModel = viewModel()) {
 
     var a by remember { mutableStateOf("") }
-
     var b by remember { mutableStateOf("") }
 
     Calculator(
-
-        a = a,
-
-        onAChanged = {
-
-            a = it
-
-        },
-
-        b = b,
-
-        onBChanged = {
-
-            b = it
-
-        },
-
+        a = a, onAChanged = { a = it },
+        b = b, onBChanged = { b = it },
         result = viewModel.resultState,
-
-        onButtonClick = {
-
-            viewModel.add(a, b)
-
-        })
-
+        onButtonClick = { viewModel.add(a, b) }
+    )
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 
-fun Calculator(
-
-    a: String,
-
-    onAChanged: (String) -> Unit,
-
-    b: String,
-
-    onBChanged: (String) -> Unit,
-
-    result: String,
-
-    onButtonClick: () -> Unit,
-
-    ) {
-
+fun Calculator(a: String, onAChanged: (String) -> Unit, b: String, onBChanged: (String) -> Unit, result: String, onButtonClick: () -> Unit, ) {
     Column(modifier = Modifier.padding(16.dp)) {
-
         OutlinedTextField(
-
             value = a,
-
             onValueChange = onAChanged,
-
-            keyboardOptions = KeyboardOptions
-
-                (keyboardType = KeyboardType.Number),
-
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
             label = { Text("a") }
-
         )
-
         OutlinedTextField(
-
             value = b,
-
             onValueChange = onBChanged,
-
-            keyboardOptions = KeyboardOptions
-
-                (keyboardType = KeyboardType.Number),
-
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
             label = { Text("b") }
-
         )
-
         Text(text = result)
-
         Button(onClick = onButtonClick) {
-
             Text(text = "Calculate")
-
         }
-
     }
-
 }
 
 @Preview(showBackground = true)

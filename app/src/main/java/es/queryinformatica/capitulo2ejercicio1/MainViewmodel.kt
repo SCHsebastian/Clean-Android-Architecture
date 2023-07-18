@@ -13,19 +13,12 @@ class MainViewModel(private val adder: NumberAdder = NumberAdder()) : ViewModel(
         private set
 
     fun add(a: String, b: String) {
-
         viewModelScope.launch {
-
-            val result = adder.add(
-                a.toInt(),
-
-                b.toInt()
-            )
-
-            resultState = result.toString()
-
+            adder.add(a.toInt(), b.toInt())
+                .collect { result ->
+                    resultState = result.toString()
+                }
         }
-
     }
 
 }

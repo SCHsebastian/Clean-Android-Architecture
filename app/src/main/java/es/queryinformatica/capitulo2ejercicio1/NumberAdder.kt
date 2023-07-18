@@ -3,28 +3,24 @@ package es.queryinformatica.capitulo2ejercicio1
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.onEach
 
-private const val DELAY = 5000
+private const val DELAY = 1000
 
 class NumberAdder(
-
     private val dispatcher: CoroutineDispatcher = Dispatchers.IO,
-
     private val delay: Int = DELAY
-
 ) {
 
-    suspend fun add(a: Int, b: Int): Int {
-
-        return withContext(dispatcher) {
-
+    suspend fun add(a: Int, b: Int): Flow<Int> {
+        return flow {
+            emit(a + b)
+        }.onEach {
             delay(delay.toLong())
-
-            a + b
-
-        }
-
+        }.flowOn(dispatcher)
     }
 
 }
