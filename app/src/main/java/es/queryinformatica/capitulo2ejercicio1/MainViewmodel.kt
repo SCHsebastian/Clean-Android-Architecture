@@ -4,21 +4,26 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 
-class MainViewModel(private val adder: NumberAdder = NumberAdder()) : ViewModel() {
+class MainViewModel(
+    private val userService: UserService
+) : ViewModel() {
 
-    var resultState by mutableStateOf("0")
+    var resultState by mutableStateOf<List<User>>(emptyList())
         private set
 
-    fun add(a: String, b: String) {
+    init {
         viewModelScope.launch {
-            adder.add(a.toInt(), b.toInt())
-                .collect { result ->
-                    resultState = result.toString()
-                }
+            val users = userService.getUsers()
+            resultState = users
         }
     }
+}
 
+class MainViewModelFactory : ViewModelProvider.Factory {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T =
+        MainViewModel(LearningApp.userService) as T
 }
