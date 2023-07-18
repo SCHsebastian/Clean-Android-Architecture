@@ -11,7 +11,7 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 
-fun UserList(users: List<User>) {
+fun UserList(users: List<UserEntity>) {
     LazyColumn(modifier = Modifier.padding(16.dp)) {
         items(users) {
             Column(modifier = Modifier.padding(16.dp)) {
