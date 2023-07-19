@@ -72,6 +72,8 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel-compose:$live_data"
     implementation "androidx.compose.runtime:runtime-livedata:$compose_version"
 
+    implementation "androidx.navigation:navigation-compose:2.6.0"
+
     implementation "com.squareup.okhttp3:okhttp:5.0.0-alpha.11"
     implementation "com.squareup.retrofit2:retrofit:$retrofit"
     implementation "com.squareup.retrofit2:converter-moshi:$retrofit"
