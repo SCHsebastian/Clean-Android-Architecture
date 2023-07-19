@@ -20,6 +20,7 @@ class LearningApp: Application() {
         lateinit var userService: UserService
         lateinit var userDao: UserDao
         lateinit var appDataStore: AppDataStore
+        lateinit var mainTextFormatter: MainTextFormatter
     }
 
     override fun onCreate() {
@@ -27,6 +28,11 @@ class LearningApp: Application() {
         createDatabase()
         createUserService()
         createDataStore()
+        createMainTextFormatter()
+    }
+
+    private fun createMainTextFormatter() {
+        mainTextFormatter = MainTextFormatter(this)
     }
 
     private fun createDataStore() {

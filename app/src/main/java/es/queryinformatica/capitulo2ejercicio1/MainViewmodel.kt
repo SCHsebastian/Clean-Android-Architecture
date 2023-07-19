@@ -1,8 +1,7 @@
 package es.queryinformatica.capitulo2ejercicio1
 
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
@@ -21,11 +20,12 @@ import kotlinx.coroutines.launch
 class MainViewModel(
     private val userService: UserService,
     private val userDao: UserDao,
-    private val appDataStore: AppDataStore
+    private val appDataStore: AppDataStore,
+    private val mainTextFormatter: MainTextFormatter
 ) : ViewModel() {
 
-    var resultState by mutableStateOf(UiState())
-        private set
+    private val _uiStateLiveData = MutableLiveData(UiState())
+    val uiStateLiveData: LiveData<UiState> = _uiStateLiveData
 
     init {
         viewModelScope.launch {
@@ -38,11 +38,15 @@ class MainViewModel(
                 .catch { emitAll(userDao.getUsers()) }
                 .flatMapConcat { users ->
                     appDataStore.savedCount.map { count ->
-                        UiState(users, count.toString()) }
+                        UiState(
+                            users,
+                            mainTextFormatter.getCounterText(count)
+                        )
+                    }
                 }
                 .flowOn(Dispatchers.IO)
                 .collect {
-                    resultState = it
+                    _uiStateLiveData.value = it
                 }
         }
     }
@@ -55,5 +59,5 @@ data class UiState(
 
 class MainViewModelFactory : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T =
-        MainViewModel(LearningApp.userService, LearningApp.userDao, LearningApp.appDataStore) as T
+        MainViewModel(LearningApp.userService, LearningApp.userDao, LearningApp.appDataStore, LearningApp.mainTextFormatter) as T
 }

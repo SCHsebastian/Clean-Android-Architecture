@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -29,9 +30,9 @@ class MainActivity : ComponentActivity() {
 @Composable
 
 fun Screen(viewModel: MainViewModel = viewModel(factory = MainViewModelFactory())) {
-
-    UserList(uiState = viewModel.resultState)
-
+    viewModel.uiStateLiveData.observeAsState().value?.let { uiState ->
+        UserList(uiState)
+    }
 }
 
 @Preview(showBackground = true)

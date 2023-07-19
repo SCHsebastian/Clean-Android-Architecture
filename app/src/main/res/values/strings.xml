@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">Capitulo 2 Ejercicio1</string>
+    <string name="app_name">Clean Architecture</string>
+    <string name="total_request_count">Total Request Count: %d</string>
 </resources>
