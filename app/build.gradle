@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
+    id 'com.google.dagger.hilt.android'
 }
 
 android {
@@ -54,6 +55,7 @@ dependencies {
         room = '2.5.2'
         retrofit = '2.9.0'
         moshi = '1.13.0'
+        hilt = '2.47'
     }
 
     implementation 'androidx.core:core-ktx:1.10.1'
@@ -85,6 +87,10 @@ dependencies {
     kapt "androidx.room:room-compiler:$room"
 
     implementation "androidx.datastore:datastore-preferences:1.0.0"
+
+    implementation "com.google.dagger:hilt-android:$hilt"
+    kapt "com.google.dagger:hilt-compiler:$hilt"
+    implementation 'androidx.hilt:hilt-navigation-compose:1.0.0'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'

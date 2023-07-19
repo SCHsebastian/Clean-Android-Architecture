@@ -12,7 +12,6 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 
 @Composable
-
 fun UserList(uiState: UiState, navController: NavController) {
     LazyColumn(modifier = Modifier.padding(16.dp)) {
         item(uiState.count) {

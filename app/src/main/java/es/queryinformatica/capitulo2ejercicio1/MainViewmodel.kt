@@ -3,8 +3,8 @@ package es.queryinformatica.capitulo2ejercicio1
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.catch
@@ -15,9 +15,11 @@ import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @OptIn(ExperimentalCoroutinesApi::class)
-class MainViewModel(
+@HiltViewModel
+class MainViewModel @Inject constructor(
     private val userService: UserService,
     private val userDao: UserDao,
     private val appDataStore: AppDataStore,
@@ -56,8 +58,3 @@ data class UiState(
     val userList: List<UserEntity> = listOf(),
     val count: String = ""
 )
-
-class MainViewModelFactory : ViewModelProvider.Factory {
-    override fun <T : ViewModel> create(modelClass: Class<T>): T =
-        MainViewModel(LearningApp.userService, LearningApp.userDao, LearningApp.appDataStore, LearningApp.mainTextFormatter) as T
-}

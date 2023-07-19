@@ -9,7 +9,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
@@ -17,8 +17,10 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import dagger.hilt.android.AndroidEntryPoint
 import es.queryinformatica.capitulo2ejercicio1.ui.theme.Capitulo2Ejercicio1Theme
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,7 +40,7 @@ class MainActivity : ComponentActivity() {
 fun MainAppication(navController: NavHostController) {
     NavHost(navController = navController, startDestination = AppNavigation.Users.route){
         composable(AppNavigation.Users.route){
-            Users(navController = navController)
+            Users(navController = navController, hiltViewModel())
         }
         composable(AppNavigation.User.route,
             arguments = listOf(navArgument(AppNavigation.User.argumentName) {
@@ -54,7 +56,7 @@ fun MainAppication(navController: NavHostController) {
 
 fun Users(
     navController: NavController,
-    viewModel: MainViewModel = viewModel(factory = MainViewModelFactory())
+    viewModel: MainViewModel
 ) {
     viewModel.uiStateLiveData.observeAsState().value?.let { uiState ->
         UserList(uiState = uiState , navController = navController)
