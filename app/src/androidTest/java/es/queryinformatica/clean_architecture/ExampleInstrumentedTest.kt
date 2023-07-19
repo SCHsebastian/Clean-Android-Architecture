@@ -1,4 +1,4 @@
-package es.queryinformatica.capitulo2ejercicio1
+package es.queryinformatica.clean_architecture
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

@@ -1,4 +1,4 @@
-package es.queryinformatica.capitulo2ejercicio1
+package es.queryinformatica.clean_architecture
 
 private const val ROUTE_USERS = "users"
 private const val ROUTE_USER = "users/%s"

@@ -1,4 +1,4 @@
-package es.queryinformatica.capitulo2ejercicio1
+package es.queryinformatica.clean_architecture
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi

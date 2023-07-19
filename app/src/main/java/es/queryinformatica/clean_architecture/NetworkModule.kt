@@ -1,4 +1,4 @@
-package es.queryinformatica.capitulo2ejercicio1
+package es.queryinformatica.clean_architecture
 
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -32,6 +32,6 @@ object NetworkModule {
         .build()
 
     @Provides
-    fun providesUserService(retrofit: Retrofit) = retrofit.create(UserService::class.java)
+    fun providesUserService(retrofit: Retrofit):UserService = retrofit.create(UserService::class.java)
 
 }

@@ -1,4 +1,4 @@
-package es.queryinformatica.capitulo2ejercicio1
+package es.queryinformatica.clean_architecture
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -18,14 +18,14 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import dagger.hilt.android.AndroidEntryPoint
-import es.queryinformatica.capitulo2ejercicio1.ui.theme.Capitulo2Ejercicio1Theme
+import es.queryinformatica.clean_architecture.ui.theme.CleanArchitectureProject
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            Capitulo2Ejercicio1Theme {
+            CleanArchitectureProject {
                 // A surface container using the 'background' color from the theme
                 Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
                     val navController = rememberNavController()

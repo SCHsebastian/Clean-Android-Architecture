@@ -6,11 +6,11 @@ plugins {
 }
 
 android {
-    namespace 'es.queryinformatica.capitulo2ejercicio1'
+    namespace 'es.queryinformatica.clean_architecture'
     compileSdk 33
 
     defaultConfig {
-        applicationId "es.queryinformatica.capitulo2ejercicio1"
+        applicationId 'es.queryinformatica.clean_architecture'
         minSdk 24
         targetSdk 33
         versionCode 1
@@ -54,7 +54,7 @@ dependencies {
         live_data = '2.6.1'
         room = '2.5.2'
         retrofit = '2.9.0'
-        moshi = '1.13.0'
+        moshi = '1.15.0'
         hilt = '2.47'
     }
 

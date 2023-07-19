@@ -1,4 +1,4 @@
-package es.queryinformatica.capitulo2ejercicio1
+package es.queryinformatica.clean_architecture
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.Text

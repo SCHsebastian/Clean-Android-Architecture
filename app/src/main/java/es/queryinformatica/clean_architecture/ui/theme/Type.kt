@@ -1,4 +1,4 @@
-package es.queryinformatica.capitulo2ejercicio1.ui.theme
+package es.queryinformatica.clean_architecture.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

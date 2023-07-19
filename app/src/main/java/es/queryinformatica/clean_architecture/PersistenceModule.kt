@@ -1,4 +1,4 @@
-package es.queryinformatica.capitulo2ejercicio1
+package es.queryinformatica.clean_architecture
 
 import android.content.Context
 import androidx.datastore.core.DataStore
@@ -28,6 +28,6 @@ object PersistenceModule {
     fun provideUserRepository(db: AppDatabase): UserDao = db.userDao()
 
     @Provides
-    fun providesAppDataStore(@ApplicationContext context: Context) = AppDataStore(context.dataStore)
+    fun providesAppDataStore(@ApplicationContext context: Context):AppDataStore = AppDataStore(context.dataStore)
 
 }

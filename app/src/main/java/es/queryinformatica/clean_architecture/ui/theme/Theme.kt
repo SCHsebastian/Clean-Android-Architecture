@@ -1,4 +1,4 @@
-package es.queryinformatica.capitulo2ejercicio1.ui.theme
+package es.queryinformatica.clean_architecture.ui.theme
 
 import android.app.Activity
 import android.os.Build
@@ -38,7 +38,7 @@ private val LightColorScheme = lightColorScheme(
 )
 
 @Composable
-fun Capitulo2Ejercicio1Theme(
+fun CleanArchitectureProject(
     darkTheme: Boolean = isSystemInDarkTheme(),
     // Dynamic color is available on Android 12+
     dynamicColor: Boolean = true,
